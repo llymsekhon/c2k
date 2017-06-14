@@ -27,23 +27,12 @@
 
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 
-    <route id="cbr-route">
-      <from uri="timer:foo?period=5000"/>
-      <!-- generate random number message, using a 3 digit number -->
-      <transform>
-        <method beanType="org.apache.commons.lang3.RandomStringUtils" method="randomNumeric(3)"/>
-      </transform>
-      <choice>
-        <when>
-          <simple>${body} &gt; 500</simple>
-          <log message="High priority message : ${body}"/>
-          <to uri="mock:high"/>
-        </when>
-        <otherwise>
-          <log message="Low priority message  : ${body}"/>
-          <to uri="mock:regular"/>
-        </otherwise>
-      </choice>
+    <route>
+      <from uri="file:///tmp/c2k/input" />
+      <setHeader headerName="kafka.PARTITION_KEY">
+      <constant>Test</constant>
+      </setHeader>
+      <to uri="kafka:localhost:6667?topic=c2k&amp;zookeeperHost=localhost&amp;zookeeperPort=2181&amp;groupId=c2k_group" />
     </route>
 
   </camelContext>
