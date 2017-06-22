@@ -36,6 +36,7 @@
   </properties>
 
   <dependencyManagement>
+
     <dependencies>
       <!-- fabric8 bom must be before fabric8 bom -->
       <dependency>
@@ -67,12 +68,11 @@
       <artifactId>camel-kafka</artifactId>
     </dependency>
 
-<dependency>
-    <groupId>org.scala-lang</groupId>
-    <artifactId>scala-library</artifactId>
-    <version>2.10.4</version>
-</dependency>
-
+	<dependency>
+    	<groupId>org.scala-lang</groupId>
+    	<artifactId>scala-library</artifactId>
+    	<version>2.10.4</version>
+	</dependency>
 
     <dependency>
       <groupId>org.apache.camel</groupId>
@@ -87,10 +87,12 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
     </dependency>
+
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
@@ -109,29 +111,34 @@
       <artifactId>camel-test-spring</artifactId>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
       <artifactId>arquillian-junit-container</artifactId>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>io.fabric8</groupId>
       <artifactId>fabric8-arquillian</artifactId>
       <scope>test</scope>
     </dependency>
+
+	<dependency>
+    	<groupId>org.apache.camel</groupId>
+    	<artifactId>camel-stream</artifactId>
+	</dependency>
+
   </dependencies>
 
   <build>
     <defaultGoal>install</defaultGoal>
-
     <plugins>
-
-
-			<plugin>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-maven-plugin</artifactId>
-				<version>2.17.0</version>
-			</plugin>
+		<plugin>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-maven-plugin</artifactId>
+			<version>2.17.0</version>
+		</plugin>
 
       <!-- Compiler plugin enforces Java 1.7 compatibility and activates annotation processors -->
       <plugin>
@@ -184,8 +191,8 @@
           <execution>
             <id>hawt-app</id>
             <goals>
-<goal>build</goal>
-</goals>
+				<goal>build</goal>
+			</goals>
             <configuration>
               <javaMainClass>org.apache.camel.spring.Main</javaMainClass>
             </configuration>

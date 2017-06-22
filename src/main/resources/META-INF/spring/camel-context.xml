@@ -28,8 +28,8 @@
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 
     <route>
-      <from uri="file:///tmp/c2k/input" />
-      <convertBodyTo type="java.lang.String"/>
+      <from uri="stream:file?fileName=/tmp/c2k/input/server.log"/>
+      <!-- convertBodyTo type="java.lang.String"/-->
       <setHeader headerName="kafka.PARTITION_KEY">
         <constant>Test</constant>
       </setHeader>
