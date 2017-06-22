@@ -27,13 +27,14 @@
 
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 
-    <route>
-      <from uri="stream:file?fileName=/tmp/c2k/input/server.log"/>
-      <!-- convertBodyTo type="java.lang.String"/-->
-      <setHeader headerName="kafka.PARTITION_KEY">
-        <constant>Test</constant>
-      </setHeader>
-      <to uri="kafka:sandbox.hortonworks.com:6667?topic=c2k&amp;zookeeperHost=localhost&amp;zookeeperPort=2181&amp;groupId=c2k_group&amp;serializerClass=kafka.serializer.StringEncoder" />
+    <route>                                                                                                                                                             
+      <from uri="stream:file?fileName=/var/log/kafka/server.log"/>                                                                                                      
+      <convertBodyTo type="java.lang.String"/>                                                                                                                          
+      <setHeader headerName="kafka.PARTITION_KEY">                                                                                                                      
+        <constant>Test</constant>                                                                                                                                       
+      </setHeader>                                                                                                                                                      
+      <to uri="kafka:sandbox.hortonworks.com:6667?topic=c2k&amp;zookeeperHost=localhost&amp;zookeeperPort=2181&amp;groupId=c2k_group&amp;serializerClass=kafka.serialize
+r.StringEncoder" />                                                                                                                                                     
     </route>
 
   </camelContext>
