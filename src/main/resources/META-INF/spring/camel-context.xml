@@ -28,7 +28,7 @@
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 
     <route>                                                                                                                                                             
-      <from uri="stream:file?scanStream=true&fileName=/tmp/c2k/input/data.txt"/>                                                                                                      
+      <from uri="stream:file?fileName=/tmp/c2k/input/data.txt&amp;scanStream=true"/>                                                                                                      
       <convertBodyTo type="java.lang.String"/>                                                                                                                          
       <setHeader headerName="kafka.PARTITION_KEY">                                                                                                                      
         <constant>Test</constant>                                                                                                                                       
