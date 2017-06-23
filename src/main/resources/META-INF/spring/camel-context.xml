@@ -28,13 +28,12 @@
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 
     <route>                                                                                                                                                             
-      <from uri="stream:file?fileName=/tmp/c2k/input/data.txt&amp;scanStream=true"/>                                                                                                      
+      <from uri="file:/tmp/c2k/input/"/>                                                                                                      
       <convertBodyTo type="java.lang.String"/>                                                                                                                          
       <setHeader headerName="kafka.PARTITION_KEY">                                                                                                                      
         <constant>Test</constant>                                                                                                                                       
       </setHeader>                                                                                                                                                      
-      <to uri="kafka:sandbox.hortonworks.com:6667?topic=c2k&amp;zookeeperHost=localhost&amp;zookeeperPort=2181&amp;groupId=c2k_group&amp;serializerClass=kafka.serialize
-r.StringEncoder" />                                                                                                                                                     
+      <to uri="kafka:sandbox.hortonworks.com:6667?topic=c2k&amp;zookeeperHost=localhost&amp;zookeeperPort=2181&amp;groupId=c2k_group&amp;serializerClass=kafka.serializer.StringEncoder" />                                                                                                                                                     
     </route>
 
   </camelContext>
