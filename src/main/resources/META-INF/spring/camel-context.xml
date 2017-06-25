@@ -39,11 +39,10 @@
     </route-->
   
     <route id="twitter-route">
-      <from uri="twitter://search?keywords=fake&amp;type=polling&amp;delay=300
-        &amp;accessToken={{access.token}}&amp;accessTokenSecret={{access.token-secret}}&amp;consumerKey={{consumer.key}}&amp;consumerSecret={{consumer.secret}}"/>
+      <from uri="twitter://search?type=polling&amp;keywords=fake&amp;delay=6000&amp;accessToken={{access.token}}&amp;accessTokenSecret={{access.token-secret}}&amp;consumerKey={{consumer.key}}&amp;consumerSecret={{consumer.secret}}"/>
+      <convertBodyTo type="java.lang.String"/>
       <!--to uri="kafka:sandbox.hortonworks.com:6667?topic=c2k&amp;zookeeperHost=localhost&amp;zookeeperPort=2181&amp;groupId=c2k_group&amp;serializerClass=kafka.serializer.StringEncoder"/-->
-      <to uri="file:/tmp/c2k/output/data.txt"/>
-
+      <to uri="file:/tmp/c2k/output/"/>
     </route>
   
   </camelContext>
