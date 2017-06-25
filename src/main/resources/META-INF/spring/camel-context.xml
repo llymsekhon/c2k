@@ -27,15 +27,25 @@
 
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 
-    <route>                                                                                                                                                             
+    <propertyPlaceholder id="placeholder" location="classpath:twitter.properties"/>
+
+    <!--route>                                                                                                                                                             
       <from uri="file:/tmp/c2k/input/"/>                                                                                                      
       <convertBodyTo type="java.lang.String"/>                                                                                                                          
       <setHeader headerName="kafka.PARTITION_KEY">                                                                                                                      
         <constant>Test</constant>                                                                                                                                       
-      </setHeader>                                                                                                                                                      
+      </setHeader>
       <to uri="kafka:sandbox.hortonworks.com:6667?topic=c2k&amp;zookeeperHost=localhost&amp;zookeeperPort=2181&amp;groupId=c2k_group&amp;serializerClass=kafka.serializer.StringEncoder" />                                                                                                                                                     
-    </route>
+    </route-->
+  
+    <route id="twitter-route">
+      <from uri="twitter://search?keywords=fake&amp;type=polling&amp;delay=300
+        &amp;accessToken={{access.token}}&amp;accessTokenSecret={{access.token-secret}}&amp;consumerKey={{consumer.key}}&amp;consumerSecret={{consumer.secret}}"/>
+      <!--to uri="kafka:sandbox.hortonworks.com:6667?topic=c2k&amp;zookeeperHost=localhost&amp;zookeeperPort=2181&amp;groupId=c2k_group&amp;serializerClass=kafka.serializer.StringEncoder"/-->
+      <to uri="file:/tmp/c2k/output/data.txt"/>
 
+    </route>
+  
   </camelContext>
 
 </beans>
