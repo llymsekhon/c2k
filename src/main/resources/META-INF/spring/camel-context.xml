@@ -44,7 +44,7 @@
       <setHeader headerName="kafka.PARTITION_KEY">                                                                                                                      
         <constant>PoC</constant>                                                                                                                                       
       </setHeader>
-      <to uri="hdfs://localhost:8020/tmp/tables/data/tweet?splitStrategy=BYTES:1024"/>
+      <to uri="hdfs://sandbox.hortonworks.com:8020/tmp/tables/data/tweet?splitStrategy=BYTES:1024"/>
     </route>
   
   </camelContext>
