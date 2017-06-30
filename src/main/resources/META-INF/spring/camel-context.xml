@@ -29,16 +29,16 @@
 
     <propertyPlaceholder id="placeholder" location="classpath:twitter.properties"/>
 
-    <route id="file-route">
+    <!--route id="file-route">
       <from uri="file:/tmp/c2k/input/"/>                                                                                                      
       <convertBodyTo type="java.lang.String"/>                                                                                                                          
       <setHeader headerName="kafka.PARTITION_KEY">                                                                                                                      
         <constant>PoC</constant>                                                                                                                                       
       </setHeader>
       <to uri="kafka:sandbox.hortonworks.com:6667?topic=c2k&amp;zookeeperHost=localhost&amp;zookeeperPort=2181&amp;groupId=c2k_group&amp;serializerClass=kafka.serializer.StringEncoder" />                                                                                                                                                     
-    </route>
+    </route-->
   
-    <!--route id="twitter-route">
+    <!--route id="twitter-hdfs-route">
       <from uri="twitter://search?type=polling&amp;keywords=fake&amp;delay=6000&amp;accessToken={{access.token}}&amp;accessTokenSecret={{access.token-secret}}&amp;consumerKey={{consumer.key}}&amp;consumerSecret={{consumer.secret}}"/>
       <convertBodyTo type="java.lang.String"/>
       <setHeader headerName="kafka.PARTITION_KEY">                                                                                                                      
@@ -46,6 +46,15 @@
       </setHeader>
       <to uri="hdfs://sandbox.hortonworks.com:8020/tmp/tables/data/tweet?splitStrategy=BYTES:1024"/>
     </route-->
+  
+    <route id="twitter-file-route">
+      <from uri="twitter://search?type=polling&amp;keywords=fake&amp;delay=6000&amp;accessToken={{access.token}}&amp;accessTokenSecret={{access.token-secret}}&amp;consumerKey={{consumer.key}}&amp;consumerSecret={{consumer.secret}}"/>
+      <convertBodyTo type="java.lang.String"/>
+      <setHeader headerName="kafka.PARTITION_KEY">                                                                                                                      
+        <constant>PoC</constant>                                                                                                                                       
+      </setHeader>
+      <to uri="file:/tmp/c2k/output/"/>                                                                                                      
+    </route>
   
   </camelContext>
 
